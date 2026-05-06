@@ -101,7 +101,40 @@ body{
   transform:translateY(-3px);
   box-shadow:0 10px 24px rgba(0,0,0,0.08);
 }
+  
+/* ===== PHÍ SÀN ===== */
+.phi-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;
+  margin-top:10px;
+}
 
+.phi-item{
+  background:#fff;
+  border:1px solid var(--color-border-tertiary);
+  border-radius:10px;
+  padding:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.03);
+}
+
+.phi-name{
+  font-size:12px;
+  color:var(--color-text-secondary);
+  margin-bottom:4px;
+}
+
+.phi-val{
+  font-size:16px;
+  font-weight:600;
+  margin-bottom:2px;
+}
+
+.phi-pct{
+  font-size:11px;
+  color:var(--color-text-secondary);
+}
+  
 /* màu theo trạng thái */
 .kpi.info{
   background:linear-gradient(135deg,#e0f2fe,#ffffff);
@@ -209,7 +242,7 @@ body{
 
 </style>
 
-<h2 class="sr-only">Dashboard TikTok Shop Actidem tháng 04/2026 — tổng quan doanh thu, chi phí và hiệu quả bán hàng</h2>
+<h2 class="sr-only">Dashboard TikTok Shop Actidem tháng 04/2026</h2>
 
 <div class="db">
 <div class="top-bar">
