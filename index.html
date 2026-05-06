@@ -1,52 +1,200 @@
-<style>:root {
-  --color-text-primary: #111;
-  --color-text-secondary: #666;
-  --color-background-primary: #ffffff;
-  --color-background-secondary: #f5f6f7;
-  --color-border-tertiary: #e5e7eb;
+<style>
 
-  --border-radius-md: 8px;
-  --border-radius-lg: 12px;
+/* ===== ROOT ===== */
+:root {
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f1f5f9;
+  --color-border-tertiary: #e2e8f0;
+
+  --border-radius-md: 10px;
+  --border-radius-lg: 14px;
 
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
+
+/* ===== GLOBAL ===== */
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-sans)}
+body{
+  font-family:var(--font-sans);
+  background:#f8fafc;
+  color:var(--color-text-primary);
+}
+
 .db{padding:1rem 0}
-.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:0.5px solid var(--color-border-tertiary)}
-.top-bar h1{font-size:15px;font-weight:500;color:var(--color-text-primary)}
-.top-bar span{font-size:12px;color:var(--color-text-secondary);background:var(--color-background-secondary);padding:4px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary)}
-.tabs{display:flex;gap:4px;margin-bottom:1.5rem}
-.tab{padding:6px 14px;font-size:13px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);background:transparent;cursor:pointer;color:var(--color-text-secondary);transition:all .15s}
-.tab.active{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
-.page{display:none}.page.active{display:block}
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.5rem}
-.kpi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px}
-.kpi-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;letter-spacing:.3px}
-.kpi-val{font-size:20px;font-weight:500;color:var(--color-text-primary);line-height:1.2}
-.kpi-sub{font-size:11px;color:var(--color-text-secondary);margin-top:3px}
-.kpi.danger .kpi-val{color:#A32D2D}
-.kpi.success .kpi-val{color:#3B6D11}
-.kpi.info .kpi-val{color:#185FA5}
-.chart-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1rem}
-.chart-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:12px}
-.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
-.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;font-size:11px;color:var(--color-text-secondary)}
-.leg-dot{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
-.section-title{font-size:13px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.5px;margin:1.5rem 0 .75rem}
-.sku-table{width:100%;border-collapse:collapse;font-size:12px}
-.sku-table th{text-align:left;padding:6px 8px;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);font-weight:400}
-.sku-table td{padding:7px 8px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary)}
-.sku-table tr:last-child td{border-bottom:none}
-.bar-bg{background:var(--color-border-tertiary);border-radius:2px;height:4px;margin-top:4px}
-.bar-fill{height:4px;border-radius:2px;background:#378ADD}
-.phi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
-.phi-item{padding:10px 12px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md)}
-.phi-name{font-size:11px;color:var(--color-text-secondary);margin-bottom:3px}
-.phi-val{font-size:16px;font-weight:500;color:var(--color-text-primary)}
-.phi-pct{font-size:11px;color:var(--color-text-secondary)}
-.ads-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.roas-bar{height:6px;border-radius:3px;margin-top:6px}
+
+/* ===== HEADER ===== */
+.top-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:1.5rem;
+  padding-bottom:1rem;
+  border-bottom:1px solid var(--color-border-tertiary)
+}
+
+.top-bar h1{
+  font-size:16px;
+  font-weight:600;
+}
+
+.top-bar span{
+  font-size:12px;
+  color:var(--color-text-secondary);
+  background:#f1f5f9;
+  padding:4px 10px;
+  border-radius:999px;
+}
+
+/* ===== TABS ===== */
+.tabs{display:flex;gap:6px;margin-bottom:1.5rem}
+
+.tab{
+  padding:6px 14px;
+  font-size:13px;
+  border:1px solid var(--color-border-tertiary);
+  border-radius:999px;
+  background:#fff;
+  cursor:pointer;
+  color:var(--color-text-secondary);
+  transition:.2s;
+}
+
+.tab.active{
+  background:#0f172a;
+  color:#fff;
+  border-color:#0f172a;
+}
+
+/* ===== KPI ===== */
+.kpi-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+  margin-bottom:1.5rem
+}
+
+/* 🔥 KPI FIX CHUẨN */
+.kpi{
+  padding:14px;
+  border-radius:var(--border-radius-md);
+  background:linear-gradient(135deg,#ffffff,#f1f5f9);
+  border:1px solid var(--color-border-tertiary);
+  box-shadow:0 6px 16px rgba(0,0,0,0.04);
+  transition:.2s;
+}
+
+.kpi:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 24px rgba(0,0,0,0.08);
+}
+
+/* màu theo trạng thái */
+.kpi.info{
+  background:linear-gradient(135deg,#e0f2fe,#ffffff);
+}
+
+.kpi.success{
+  background:linear-gradient(135deg,#ecfdf5,#ffffff);
+}
+
+.kpi.danger{
+  background:linear-gradient(135deg,#fee2e2,#ffffff);
+}
+
+.kpi-label{
+  font-size:11px;
+  color:var(--color-text-secondary);
+  margin-bottom:4px;
+}
+
+.kpi-val{
+  font-size:22px;
+  font-weight:600;
+}
+
+.kpi-sub{
+  font-size:11px;
+  color:var(--color-text-secondary);
+  margin-top:3px;
+}
+
+/* màu text */
+.kpi.danger .kpi-val{color:#dc2626}
+.kpi.success .kpi-val{color:#16a34a}
+.kpi.info .kpi-val{color:#0284c7}
+
+/* ===== CHART ===== */
+.chart-card{
+  background:#fff;
+  border:1px solid var(--color-border-tertiary);
+  border-radius:var(--border-radius-lg);
+  padding:1rem 1.25rem;
+  margin-bottom:1rem;
+  box-shadow:0 4px 12px rgba(0,0,0,0.03);
+}
+
+.chart-title{
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:12px;
+}
+
+.chart-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+}
+
+.legend{
+  display:flex;
+  gap:12px;
+  font-size:11px;
+  color:var(--color-text-secondary);
+  margin-bottom:10px;
+}
+
+.leg-dot{
+  width:10px;
+  height:10px;
+  border-radius:2px;
+  display:inline-block;
+  margin-right:4px;
+}
+
+/* ===== TABLE ===== */
+.sku-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px
+}
+
+.sku-table th{
+  text-align:left;
+  padding:6px 8px;
+  color:var(--color-text-secondary);
+  border-bottom:1px solid var(--color-border-tertiary);
+}
+
+.sku-table td{
+  padding:7px 8px;
+  border-bottom:1px solid var(--color-border-tertiary);
+}
+
+.bar-bg{
+  background:#e5e7eb;
+  border-radius:2px;
+  height:4px;
+  margin-top:4px;
+}
+
+.bar-fill{
+  height:4px;
+  border-radius:2px;
+  background:#3b82f6;
+}
+
 </style>
 
 <h2 class="sr-only">Dashboard TikTok Shop Actidem tháng 04/2026 — tổng quan doanh thu, chi phí và hiệu quả bán hàng</h2>
