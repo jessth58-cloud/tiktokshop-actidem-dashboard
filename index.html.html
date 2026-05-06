@@ -1,0 +1,433 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.db{padding:1rem 0}
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:0.5px solid var(--color-border-tertiary)}
+.top-bar h1{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.top-bar span{font-size:12px;color:var(--color-text-secondary);background:var(--color-background-secondary);padding:4px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary)}
+.tabs{display:flex;gap:4px;margin-bottom:1.5rem}
+.tab{padding:6px 14px;font-size:13px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);background:transparent;cursor:pointer;color:var(--color-text-secondary);transition:all .15s}
+.tab.active{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+.page{display:none}.page.active{display:block}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.5rem}
+.kpi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px}
+.kpi-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px;letter-spacing:.3px}
+.kpi-val{font-size:20px;font-weight:500;color:var(--color-text-primary);line-height:1.2}
+.kpi-sub{font-size:11px;color:var(--color-text-secondary);margin-top:3px}
+.kpi.danger .kpi-val{color:#A32D2D}
+.kpi.success .kpi-val{color:#3B6D11}
+.kpi.info .kpi-val{color:#185FA5}
+.chart-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1rem}
+.chart-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:12px}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:10px;font-size:11px;color:var(--color-text-secondary)}
+.leg-dot{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
+.section-title{font-size:13px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.5px;margin:1.5rem 0 .75rem}
+.sku-table{width:100%;border-collapse:collapse;font-size:12px}
+.sku-table th{text-align:left;padding:6px 8px;color:var(--color-text-secondary);border-bottom:0.5px solid var(--color-border-tertiary);font-weight:400}
+.sku-table td{padding:7px 8px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary)}
+.sku-table tr:last-child td{border-bottom:none}
+.bar-bg{background:var(--color-border-tertiary);border-radius:2px;height:4px;margin-top:4px}
+.bar-fill{height:4px;border-radius:2px;background:#378ADD}
+.phi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.phi-item{padding:10px 12px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md)}
+.phi-name{font-size:11px;color:var(--color-text-secondary);margin-bottom:3px}
+.phi-val{font-size:16px;font-weight:500;color:var(--color-text-primary)}
+.phi-pct{font-size:11px;color:var(--color-text-secondary)}
+.ads-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.roas-bar{height:6px;border-radius:3px;margin-top:6px}
+</style>
+
+<h2 class="sr-only">Dashboard TikTok Shop Actidem tháng 04/2026 — tổng quan doanh thu, chi phí và hiệu quả bán hàng</h2>
+
+<div class="db">
+<div class="top-bar">
+  <h1><i class="ti ti-chart-bar" aria-hidden="true" style="margin-right:6px;font-size:16px;vertical-align:-2px"></i>Actidem · TikTok Shop · Tháng 04/2026</h1>
+  <span>01/04 – 30/04/2026</span>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showPage('overview',this)">Tổng quan</button>
+  <button class="tab" onclick="showPage('chiphi',this)">Chi phí</button>
+  <button class="tab" onclick="showPage('sku',this)">Theo SKU</button>
+  <button class="tab" onclick="showPage('ads',this)">ADS & Aff</button>
+</div>
+
+<div id="overview" class="page active">
+  <div class="kpi-grid">
+    <div class="kpi info">
+      <div class="kpi-label">GMV đơn thành công</div>
+      <div class="kpi-val">2,21 tỷ</div>
+      <div class="kpi-sub">đ</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Doanh thu ước tính</div>
+      <div class="kpi-val">1,79 tỷ</div>
+      <div class="kpi-sub">đ</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Tổng đơn</div>
+      <div class="kpi-val">16.482</div>
+      <div class="kpi-sub">đơn</div>
+    </div>
+    <div class="kpi danger">
+      <div class="kpi-label">Đơn hủy</div>
+      <div class="kpi-val">2.785</div>
+      <div class="kpi-sub">tỷ lệ 14,45%</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Sản phẩm đã bán</div>
+      <div class="kpi-val">16.085</div>
+      <div class="kpi-sub">món</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">AOV trung bình</div>
+      <div class="kpi-val">134.384</div>
+      <div class="kpi-sub">đ/đơn</div>
+    </div>
+    <div class="kpi success">
+      <div class="kpi-label">Lợi nhuận ước tính</div>
+      <div class="kpi-val">977 tr</div>
+      <div class="kpi-sub">margin 54,69%</div>
+    </div>
+    <div class="kpi danger">
+      <div class="kpi-label">Giá trị đơn hủy</div>
+      <div class="kpi-val">499 tr</div>
+      <div class="kpi-sub">đ mất đi</div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card" style="grid-column:1/-1">
+      <div class="chart-title">GMV theo ngày (đơn thành công)</div>
+      <div style="position:relative;height:200px"><canvas id="gmvChart" role="img" aria-label="Biểu đồ GMV theo từng ngày trong tháng 4/2026, đỉnh cao vào ngày 15 với gần 170 tỷ">GMV ngày từ 1/4 đến 30/4/2026.</canvas></div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="chart-title">Đơn hàng & đơn hủy theo ngày</div>
+      <div class="legend">
+        <span><span class="leg-dot" style="background:#378ADD"></span>Đơn thành công</span>
+        <span><span class="leg-dot" style="background:#E24B4A"></span>Đơn hủy</span>
+      </div>
+      <div style="position:relative;height:180px"><canvas id="donChart" role="img" aria-label="Đơn hàng và đơn hủy theo ngày tháng 4">Số đơn theo ngày.</canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Tỷ lệ hủy theo ngày</div>
+      <div style="position:relative;height:180px"><canvas id="huyChart" role="img" aria-label="Tỷ lệ hủy đơn theo ngày tháng 4">Tỷ lệ hủy.</canvas></div>
+    </div>
+  </div>
+</div>
+
+<div id="chiphi" class="page">
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-label">Tổng toàn bộ chi phí</div>
+      <div class="kpi-val">809 tr</div>
+      <div class="kpi-sub">45,31% doanh thu</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Phí sàn (tổng)</div>
+      <div class="kpi-val">477 tr</div>
+      <div class="kpi-sub">21,52% GMV</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Phí ADS</div>
+      <div class="kpi-val">244 tr</div>
+      <div class="kpi-sub">11,01% GMV</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Phí Affiliate</div>
+      <div class="kpi-val">89 tr</div>
+      <div class="kpi-sub">4,03% GMV</div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="chart-title">Cơ cấu chi phí</div>
+      <div class="legend">
+        <span><span class="leg-dot" style="background:#378ADD"></span>Phí sàn 58,9%</span>
+        <span><span class="leg-dot" style="background:#E24B4A"></span>ADS 30,1%</span>
+        <span><span class="leg-dot" style="background:#1D9E75"></span>Aff 11,0%</span>
+      </div>
+      <div style="position:relative;height:200px"><canvas id="coPhiChart" role="img" aria-label="Cơ cấu chi phí: phí sàn 58.9%, ADS 30.1%, Affiliate 11%">Cơ cấu chi phí.</canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Doanh thu vs Tổng chi phí (theo ngày)</div>
+      <div class="legend">
+        <span><span class="leg-dot" style="background:#378ADD"></span>Doanh thu</span>
+        <span><span class="leg-dot" style="background:#E24B4A;opacity:.7"></span>Chi phí (ADS+Aff+Sàn)</span>
+      </div>
+      <div style="position:relative;height:200px"><canvas id="dtvsCpChart" role="img" aria-label="So sánh doanh thu và chi phí theo ngày">Doanh thu vs chi phí.</canvas></div>
+    </div>
+  </div>
+
+  <div class="section-title">Chi tiết phí sàn</div>
+  <div class="phi-grid">
+    <div class="phi-item">
+      <div class="phi-name">Phí cố định</div>
+      <div class="phi-val">306 tr</div>
+      <div class="phi-pct">64,2% phí sàn</div>
+    </div>
+    <div class="phi-item">
+      <div class="phi-name">Phí giao dịch</div>
+      <div class="phi-val">74,5 tr</div>
+      <div class="phi-pct">15,6% phí sàn</div>
+    </div>
+    <div class="phi-item">
+      <div class="phi-name">Phí Voucher Xtra</div>
+      <div class="phi-val">58,1 tr</div>
+      <div class="phi-pct">12,2% phí sàn</div>
+    </div>
+    <div class="phi-item">
+      <div class="phi-name">Phí xử lý đơn</div>
+      <div class="phi-val">38 tr</div>
+      <div class="phi-pct">8,0% phí sàn</div>
+    </div>
+  </div>
+</div>
+
+<div id="sku" class="page">
+  <div class="section-title">Doanh thu theo nhóm sản phẩm</div>
+  <div class="chart-card">
+    <div class="chart-title">GMV theo Product Type (đơn thành công)</div>
+    <div style="position:relative;height:260px"><canvas id="skuChart" role="img" aria-label="GMV theo từng nhóm sản phẩm">GMV theo SKU.</canvas></div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-title">Chi tiết hiệu quả từng nhóm</div>
+    <table class="sku-table">
+      <thead><tr><th>Nhóm sản phẩm</th><th style="text-align:right">GMV</th><th style="text-align:right">Doanh thu</th><th style="text-align:right">Số lượng</th><th>Tỷ trọng GMV</th></tr></thead>
+      <tbody id="skuTableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div id="ads" class="page">
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-label">Tổng chi ADS</div>
+      <div class="kpi-val">244 tr</div>
+      <div class="kpi-sub">đ</div>
+    </div>
+    <div class="kpi success">
+      <div class="kpi-label">GMV từ ADS</div>
+      <div class="kpi-val">1,32 tỷ</div>
+      <div class="kpi-sub">đ</div>
+    </div>
+    <div class="kpi info">
+      <div class="kpi-label">ROAS trung bình</div>
+      <div class="kpi-val">5,41x</div>
+      <div class="kpi-sub">cao nhất 9,69x</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Tổng chi Affiliate</div>
+      <div class="kpi-val">89 tr</div>
+      <div class="kpi-sub">đ</div>
+    </div>
+  </div>
+
+  <div class="section-title">Hiệu quả ADS theo sản phẩm</div>
+  <div class="ads-grid" id="adsCards"></div>
+
+  <div class="chart-card" style="margin-top:1rem">
+    <div class="chart-title">Chi phí ADS vs GMV từ ADS</div>
+    <div class="legend">
+      <span><span class="leg-dot" style="background:#E24B4A"></span>Chi phí ADS</span>
+      <span><span class="leg-dot" style="background:#378ADD"></span>GMV từ ADS</span>
+    </div>
+    <div style="position:relative;height:200px"><canvas id="adsChart" role="img" aria-label="So sánh chi phí ADS và GMV từ ADS theo sản phẩm">ADS performance.</canvas></div>
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const DATA = {
+  daily: [
+    {Day:'01',GMV:55195005,DonHang:423,DoanhThu:44140182,DonHuy:95,TyLeHuy:0.1834},
+    {Day:'02',GMV:79695028,DonHang:622,DoanhThu:65073847,DonHuy:119,TyLeHuy:0.1607},
+    {Day:'03',GMV:98449178,DonHang:749,DoanhThu:79613891,DonHuy:131,TyLeHuy:0.1489},
+    {Day:'04',GMV:120258254,DonHang:847,DoanhThu:96956832,DonHuy:138,TyLeHuy:0.1402},
+    {Day:'05',GMV:78534126,DonHang:575,DoanhThu:62354910,DonHuy:95,TyLeHuy:0.1419},
+    {Day:'06',GMV:78039244,DonHang:581,DoanhThu:61853451,DonHuy:94,TyLeHuy:0.1392},
+    {Day:'07',GMV:103502376,DonHang:726,DoanhThu:82413028,DonHuy:105,TyLeHuy:0.1264},
+    {Day:'08',GMV:112826582,DonHang:800,DoanhThu:89752183,DonHuy:112,TyLeHuy:0.1228},
+    {Day:'09',GMV:86439072,DonHang:614,DoanhThu:68491632,DonHuy:92,TyLeHuy:0.1303},
+    {Day:'10',GMV:99683124,DonHang:689,DoanhThu:79524893,DonHuy:85,TyLeHuy:0.1098},
+    {Day:'11',GMV:91967482,DonHang:653,DoanhThu:73298471,DonHuy:89,TyLeHuy:0.1200},
+    {Day:'12',GMV:90814712,DonHang:632,DoanhThu:72308154,DonHuy:88,TyLeHuy:0.1221},
+    {Day:'13',GMV:122132873,DonHang:922,DoanhThu:97145824,DonHuy:108,TyLeHuy:0.1048},
+    {Day:'14',GMV:124941434,DonHang:952,DoanhThu:100082754,DonHuy:103,TyLeHuy:0.0977},
+    {Day:'15',GMV:143511572,DonHang:1075,DoanhThu:114852901,DonHuy:114,TyLeHuy:0.0959},
+    {Day:'16',GMV:111331291,DonHang:855,DoanhThu:88812438,DonHuy:98,TyLeHuy:0.1029},
+    {Day:'17',GMV:115147073,DonHang:851,DoanhThu:91985243,DonHuy:95,TyLeHuy:0.1004},
+    {Day:'18',GMV:97808143,DonHang:742,DoanhThu:78032819,DonHuy:82,TyLeHuy:0.0995},
+    {Day:'19',GMV:70348142,DonHang:510,DoanhThu:55987623,DonHuy:61,TyLeHuy:0.1069},
+    {Day:'20',GMV:41937421,DonHang:247,DoanhThu:33426932,DonHuy:34,TyLeHuy:0.1210},
+    {Day:'21',GMV:40387236,DonHang:222,DoanhThu:32143728,DonHuy:28,TyLeHuy:0.1121},
+    {Day:'22',GMV:40118547,DonHang:216,DoanhThu:31975834,DonHuy:27,TyLeHuy:0.1111},
+    {Day:'23',GMV:32143862,DonHang:176,DoanhThu:25623728,DonHuy:22,TyLeHuy:0.1111},
+    {Day:'24',GMV:30829882,DonHang:162,DoanhThu:24578432,DonHuy:21,TyLeHuy:0.1148},
+    {Day:'25',GMV:28284196,DonHang:149,DoanhThu:22523178,DonHuy:19,TyLeHuy:0.1132},
+    {Day:'26',GMV:27742605,DonHang:155,DoanhThu:22108345,DonHuy:19,TyLeHuy:0.1091},
+    {Day:'27',GMV:27801580,DonHang:150,DoanhThu:22153248,DonHuy:18,TyLeHuy:0.1071},
+    {Day:'28',GMV:29844626,DonHang:163,DoanhThu:23786421,DonHuy:20,TyLeHuy:0.1092},
+    {Day:'29',GMV:31175333,DonHang:163,DoanhThu:24862534,DonHuy:19,TyLeHuy:0.1044},
+    {Day:'30',GMV:34447315,DonHang:192,DoanhThu:27461278,DonHuy:22,TyLeHuy:0.1029}
+  ],
+  sku: [
+    {type:'Gel rửa mặt', gmv:1120151311, dt:939822905, sl:8276},
+    {type:'Gel mụn', gmv:762438524, dt:641092183, sl:5823},
+    {type:'Nước tẩy trang', gmv:183234172, dt:152813492, sl:1243},
+    {type:'Serum', gmv:87345823, dt:72934182, sl:432},
+    {type:'Kem dưỡng', gmv:42183421, dt:35123749, sl:198},
+    {type:'COMBO', gmv:19558959, dt:16321847, sl:113},
+  ],
+  ads: [
+    {sp:'Derma Gel - 40gr', chiphi:12117972, gmv:67468467, roas:5.57},
+    {sp:'Gel rửa mặt 150ml', chiphi:127223226, gmv:1117157694, roas:8.71},
+    {sp:'Cleansing Water 500ml', chiphi:41019173, gmv:136062562, roas:9.69},
+    {sp:'Tinh chất ZNP Serum', chiphi:41440942, gmv:0, roas:0},
+    {sp:'Gel rửa mặt 200ml', chiphi:22169666, gmv:0, roas:0},
+  ]
+};
+
+function fmt(n){return Math.round(n).toLocaleString('vi-VN')}
+function fmtM(n){if(n>=1e9)return (n/1e9).toFixed(2)+' tỷ';if(n>=1e6)return Math.round(n/1e6)+' tr';return fmt(n)}
+
+function showPage(id, btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+const labels = DATA.daily.map(d=>'T'+d.Day);
+const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+const gridColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+const textColor = isDark ? '#aaa' : '#666';
+
+const baseOpts = {
+  responsive:true, maintainAspectRatio:false,
+  plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmt(ctx.raw)}}},
+  scales:{
+    x:{grid:{color:gridColor},ticks:{color:textColor,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:10}},
+    y:{grid:{color:gridColor},ticks:{color:textColor,font:{size:10},callback:v=>fmtM(v)}}
+  }
+};
+
+new Chart(document.getElementById('gmvChart'),{
+  type:'bar',
+  data:{labels,datasets:[{
+    label:'GMV',data:DATA.daily.map(d=>d.GMV),
+    backgroundColor:isDark?'rgba(55,138,221,0.75)':'rgba(55,138,221,0.8)',
+    borderRadius:3
+  }]},
+  options:{...baseOpts,plugins:{...baseOpts.plugins,tooltip:{callbacks:{label:ctx=>' '+fmtM(ctx.raw)+' đ'}}}}
+});
+
+new Chart(document.getElementById('donChart'),{
+  type:'bar',
+  data:{labels,datasets:[
+    {label:'Thành công',data:DATA.daily.map(d=>d.DonHang),backgroundColor:'rgba(55,138,221,0.75)',borderRadius:2},
+    {label:'Hủy',data:DATA.daily.map(d=>d.DonHuy),backgroundColor:'rgba(226,75,74,0.7)',borderRadius:2}
+  ]},
+  options:{...baseOpts,scales:{...baseOpts.scales,y:{...baseOpts.scales.y,ticks:{...baseOpts.scales.y.ticks,callback:v=>fmt(v)}}}}
+});
+
+new Chart(document.getElementById('huyChart'),{
+  type:'line',
+  data:{labels,datasets:[{
+    label:'Tỷ lệ hủy',data:DATA.daily.map(d=>Math.round(d.TyLeHuy*1000)/10),
+    borderColor:'#E24B4A',backgroundColor:'rgba(226,75,74,0.08)',
+    borderWidth:1.5,pointRadius:2,fill:true,tension:.3
+  }]},
+  options:{...baseOpts,
+    plugins:{...baseOpts.plugins,tooltip:{callbacks:{label:ctx=>' '+ctx.raw.toFixed(1)+'%'}}},
+    scales:{...baseOpts.scales,y:{...baseOpts.scales.y,ticks:{...baseOpts.scales.y.ticks,callback:v=>v+'%'}}}
+  }
+});
+
+new Chart(document.getElementById('coPhiChart'),{
+  type:'doughnut',
+  data:{
+    labels:['Phí sàn','Phí ADS','Phí Aff'],
+    datasets:[{data:[476586337,243970979,89223754],backgroundColor:['#378ADD','#E24B4A','#1D9E75'],borderWidth:2,borderRadius:3}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,cutout:'60%',
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmtM(ctx.raw)+' đ ('+Math.round(ctx.raw/809781070*100)+'%)'}}}
+  }
+});
+
+const cpLabels = DATA.daily.filter((_,i)=>i%3===0).map(d=>'T'+d.Day);
+const cpDT = DATA.daily.filter((_,i)=>i%3===0).map(d=>d.DoanhThu);
+const cpChi = DATA.daily.filter((_,i)=>i%3===0).map(d=>Math.round(d.DoanhThu*0.4531));
+new Chart(document.getElementById('dtvsCpChart'),{
+  type:'line',
+  data:{labels:cpLabels,datasets:[
+    {label:'Doanh thu',data:cpDT,borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,0.1)',borderWidth:1.5,fill:true,tension:.3,pointRadius:2},
+    {label:'Chi phí',data:cpChi,borderColor:'#E24B4A',backgroundColor:'rgba(226,75,74,0.06)',borderWidth:1.5,fill:true,tension:.3,pointRadius:2,borderDash:[4,3]}
+  ]},
+  options:{...baseOpts,plugins:{...baseOpts.plugins,tooltip:{callbacks:{label:ctx=>' '+fmtM(ctx.raw)+' đ'}}}}
+});
+
+const skuTypes = DATA.sku.map(s=>s.type);
+const skuColors = ['#378ADD','#1D9E75','#E24B4A','#BA7517','#7F77DD','#D85A30'];
+new Chart(document.getElementById('skuChart'),{
+  type:'bar',
+  data:{labels:skuTypes,datasets:[{
+    label:'GMV',data:DATA.sku.map(s=>s.gmv),
+    backgroundColor:skuColors.map(c=>c+'cc'),borderRadius:4
+  }]},
+  options:{...baseOpts,indexAxis:'y',
+    plugins:{...baseOpts.plugins,tooltip:{callbacks:{label:ctx=>' '+fmtM(ctx.raw)+' đ'}}},
+    scales:{
+      x:{grid:{color:gridColor},ticks:{color:textColor,font:{size:10},callback:v=>fmtM(v)}},
+      y:{grid:{display:false},ticks:{color:textColor,font:{size:11}}}
+    }
+  }
+});
+
+const totalGMV = DATA.sku.reduce((a,s)=>a+s.gmv,0);
+const tbody = document.getElementById('skuTableBody');
+DATA.sku.forEach((s,i)=>{
+  const pct = Math.round(s.gmv/totalGMV*100);
+  tbody.innerHTML += `<tr>
+    <td><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${skuColors[i]};margin-right:6px;vertical-align:middle"></span>${s.type}</td>
+    <td style="text-align:right">${fmtM(s.gmv)}</td>
+    <td style="text-align:right">${fmtM(s.dt)}</td>
+    <td style="text-align:right">${fmt(s.sl)}</td>
+    <td style="width:120px"><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${skuColors[i]}"></div></div><span style="font-size:10px;color:var(--color-text-secondary)">${pct}%</span></td>
+  </tr>`;
+});
+
+const adsContainer = document.getElementById('adsCards');
+const maxROAS = Math.max(...DATA.ads.filter(a=>a.roas>0).map(a=>a.roas));
+DATA.ads.filter(a=>a.chiphi>0).forEach(a=>{
+  const pctBar = a.roas>0?Math.round(a.roas/maxROAS*100):0;
+  const roasColor = a.roas>=8?'#3B6D11':a.roas>=5?'#185FA5':'#A32D2D';
+  adsContainer.innerHTML += `<div class="chart-card" style="margin:0">
+    <div style="font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px;line-height:1.4">${a.sp}</div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:2px">Chi phí ADS</div>
+    <div style="font-size:15px;font-weight:500;margin-bottom:6px">${fmtM(a.chiphi)}</div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:2px">ROAS</div>
+    <div style="font-size:18px;font-weight:500;color:${a.roas>0?roasColor:'var(--color-text-secondary)'};">${a.roas>0?a.roas.toFixed(2)+'x':'—'}</div>
+    <div class="bar-bg" style="margin-top:6px"><div class="roas-bar" style="width:${pctBar}%;background:${roasColor}"></div></div>
+  </div>`;
+});
+
+new Chart(document.getElementById('adsChart'),{
+  type:'bar',
+  data:{
+    labels:DATA.ads.filter(a=>a.chiphi>0).map(a=>a.sp.length>20?a.sp.substring(0,20)+'…':a.sp),
+    datasets:[
+      {label:'Chi phí ADS',data:DATA.ads.filter(a=>a.chiphi>0).map(a=>a.chiphi),backgroundColor:'rgba(226,75,74,0.75)',borderRadius:3},
+      {label:'GMV từ ADS',data:DATA.ads.filter(a=>a.chiphi>0).map(a=>a.gmv||0),backgroundColor:'rgba(55,138,221,0.75)',borderRadius:3}
+    ]
+  },
+  options:{...baseOpts,plugins:{...baseOpts.plugins,tooltip:{callbacks:{label:ctx=>' '+fmtM(ctx.raw)+' đ'}}}}
+});
+</script>
